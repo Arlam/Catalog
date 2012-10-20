@@ -50,7 +50,7 @@ public class FilmsView extends JFrame {
 		JTable table = new JTable(tableModel);
 		TableColumn watchColumn = table.getColumnModel().getColumn(5);
 		watchColumn.setCellRenderer(new ComboBoxRenderer());
-		watchColumn.setCellEditor(new ComboBoxEditor());
+		// watchColumn.setCellEditor(new ComboBoxEditor());
 		add(new JScrollPane(table));
 
 	}
