@@ -3,16 +3,20 @@ package my.catalog.swing.adapters;
 import javax.swing.table.AbstractTableModel;
 
 import my.catalog.entities.FilmEntity;
+import my.catalog.model.IAppModel;
 import my.catalog.model.IFilmsModel;
+import my.catalog.service.FilmController;
 
 public class FilmsTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 7164003784495156620L;
 
 	private IFilmsModel filmsModel;
+	private FilmController filmController;
 
-	public FilmsTableModel(IFilmsModel filmsModel) {
-		this.filmsModel = filmsModel;
+	public FilmsTableModel(IAppModel models) {
+		this.filmsModel = models.getFilmsModel();
+		this.filmController = new FilmController(models);
 	}
 
 	@Override
@@ -48,6 +52,15 @@ public class FilmsTableModel extends AbstractTableModel {
 	}
 
 	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		switch (columnIndex) {
+		case 5:
+			return Boolean.class;
+		}
+		return super.getColumnClass(columnIndex);
+	}
+
+	@Override
 	public String getColumnName(int columnIndex) {
 		switch (columnIndex) {
 		case 0:
@@ -70,6 +83,31 @@ public class FilmsTableModel extends AbstractTableModel {
 
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return true;
+		switch (columnIndex) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	@Override
+	public void setValueAt(Object value, int rowIndex, int columnIndex) {
+		FilmEntity film = filmsModel.getFilm(rowIndex);
+		switch (columnIndex) {
+		case 1:
+			film.setName((String) value);
+			break;
+		case 5:
+
+			film.setWatched((Boolean) value);
+			break;
+
+		}
+		filmController.updateFilm(film);
 	}
 }

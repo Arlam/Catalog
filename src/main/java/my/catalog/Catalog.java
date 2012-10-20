@@ -15,10 +15,10 @@ public class Catalog {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AbstractDAOFactory.initFactory(FactoryType.MY_SQL_FACTORY);
+		AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory
+				.initFactory(FactoryType.MY_SQL_FACTORY);
 		IAppModel model = new AppModel();
-		DataLoader dataLoader = new DataLoader(model,
-				AbstractDAOFactory.getActiveDaoFactory());
+		DataLoader dataLoader = new DataLoader(model, abstractDAOFactory);
 		dataLoader.updateAllModels();
 
 		JFrame catalog = new FilmsView(model);

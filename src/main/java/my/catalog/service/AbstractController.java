@@ -12,7 +12,7 @@ import my.catalog.model.IAppModel;
 
 public abstract class AbstractController {
 	private IAppModel model = null;
-	AbstractDAOFactory abstractDAOFactory = null;
+	private AbstractDAOFactory abstractDAOFactory = null;
 
 	protected AbstractController(IAppModel model) {
 		this.model = model;

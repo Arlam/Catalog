@@ -7,7 +7,6 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 import my.catalog.model.IAppModel;
@@ -20,7 +19,7 @@ public class FilmsView extends JFrame {
 
 	private static final long serialVersionUID = -2575244459991309147L;
 
-	private static final int DEFAULT_WIDTH = 1020;
+	private static final int DEFAULT_WIDTH = 1100;
 	private static final int DEFAULT_HEIGHT = 800;
 
 	public FilmsView(IAppModel modelsFactory) {
@@ -45,13 +44,27 @@ public class FilmsView extends JFrame {
 
 		add(toolbar, BorderLayout.NORTH);
 
-		TableModel tableModel = new FilmsTableModel(
-				modelsFactory.getFilmsModel());
+		TableModel tableModel = new FilmsTableModel(modelsFactory);
 		JTable table = new JTable(tableModel);
-		TableColumn watchColumn = table.getColumnModel().getColumn(5);
-		watchColumn.setCellRenderer(new ComboBoxRenderer());
+		// TableColumn watchColumn = table.getColumnModel().getColumn(5);
+		// watchColumn.setCellRenderer(new ComboBoxRenderer(new String[] {
+		// "true",
+		// "false" }));
 		// watchColumn.setCellEditor(new ComboBoxEditor());
 		add(new JScrollPane(table));
+
+		setColumnsSize(table);
+	}
+
+	private void setColumnsSize(JTable table) {
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+		table.getColumnModel().getColumn(0).setPreferredWidth(30);
+		table.getColumnModel().getColumn(1).setPreferredWidth(400);
+		table.getColumnModel().getColumn(2).setPreferredWidth(70);
+		table.getColumnModel().getColumn(3).setPreferredWidth(100);
+		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getColumnModel().getColumn(5).setPreferredWidth(50);
+		table.getColumnModel().getColumn(6).setMinWidth(350);
 
 	}
 

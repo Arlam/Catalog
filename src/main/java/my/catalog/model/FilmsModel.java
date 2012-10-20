@@ -14,6 +14,11 @@ public class FilmsModel implements IFilmsModel, IModelManagement {
 	}
 
 	@Override
+	public FilmEntity getFilm(int id) {
+		return films.get(id);
+	}
+
+	@Override
 	public void setData(List<FilmEntity> films) {
 		this.films = films;
 	}

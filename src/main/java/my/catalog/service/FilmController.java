@@ -3,15 +3,18 @@ package my.catalog.service;
 import java.util.Map;
 
 import my.catalog.dao.AbstractDAOFactory;
+import my.catalog.dao.FilmDAO;
 import my.catalog.entities.FilmEntity;
 import my.catalog.model.IAppModel;
 
-public class AddNewFilmController extends AbstractController {
+public class FilmController extends AbstractController {
 
 	private static final Object FILM_VALUE = "Film";
+	private FilmDAO filmDAO;
 
-	protected AddNewFilmController(IAppModel model) {
+	public FilmController(IAppModel model) {
 		super(model);
+		filmDAO = AbstractDAOFactory.getActiveDaoFactory().getFilmDAO();
 	}
 
 	@Override
@@ -20,7 +23,12 @@ public class AddNewFilmController extends AbstractController {
 		if (film == null) {
 			throw new IllegalArgumentException();
 		}
-		AbstractDAOFactory.getActiveDaoFactory().getFilmDAO().creatrFilm(film);
+		filmDAO.creatrFilm(film);
+		updateFilmsModel();
+	}
+
+	public void updateFilm(FilmEntity film) {
+		filmDAO.updateFilm(film);
 		updateFilmsModel();
 	}
 

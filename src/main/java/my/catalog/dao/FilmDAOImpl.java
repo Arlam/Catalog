@@ -22,17 +22,17 @@ public class FilmDAOImpl implements FilmDAO {
 	public Integer creatrFilm(FilmEntity film) {
 		Session session = sessionFactory.openSession();
 		Integer id = null;
-		try{
+		try {
 			session.beginTransaction();
 			id = (Integer) session.save(film);
 			session.getTransaction().commit();
 			LOG.info(film.getName() + " added");
-		}catch (HibernateException e) {
+		} catch (HibernateException e) {
 			LOG.warn(e.getMessage());
 			session.getTransaction().rollback();
-		}finally {
+		} finally {
 			session.close();
-		}		
+		}
 		return id;
 	}
 
@@ -63,6 +63,14 @@ public class FilmDAOImpl implements FilmDAO {
 		session.delete(film);
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	@Override
+	public void updateFilm(FilmEntity film) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(film);
+		session.getTransaction().commit();
 	}
 
 }
