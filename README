@@ -1,0 +1,4 @@
+1. Create DB. run /db/catalog.sql
+2. Change DB settings:
+ 	2.1 Copy file hibernate.cfg.xml.example into hibernate.cfg.xml and set your properties
+	"connection.url", "connection.username", "connection.password"
