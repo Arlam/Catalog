@@ -17,7 +17,6 @@ public class FilmController extends AbstractController {
 		filmDAO = AbstractDAOFactory.getActiveDaoFactory().getFilmDAO();
 	}
 
-	@Override
 	public void call(Map<String, Object> params) {
 		FilmEntity film = (FilmEntity) params.get(FILM_VALUE);
 		if (film == null) {

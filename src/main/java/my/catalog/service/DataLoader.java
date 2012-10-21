@@ -14,13 +14,12 @@ public class DataLoader extends AbstractController {
 		this.abstractDAOFactory = abstractDAOFactory;
 	}
 
-	@Override
 	public void call(Map<String, Object> params) {
 		updateFilmsModel();
 	}
 
 	public void updateAllModels() {
-		updatePathsModel();
+		updateFoldersModel();
 		updateLanguageModel();
 		updateGanreModel();
 		updateFilmsModel();

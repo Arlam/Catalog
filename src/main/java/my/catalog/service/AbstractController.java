@@ -1,7 +1,6 @@
 package my.catalog.service;
 
 import java.util.List;
-import java.util.Map;
 
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.entities.FilmEntity;
@@ -25,7 +24,7 @@ public abstract class AbstractController {
 		this.abstractDAOFactory = abstractDAOFactory;
 	}
 
-	abstract public void call(Map<String, Object> params);
+	// abstract public void call(Map<String, Object> params);
 
 	protected IAppModel getModel() {
 		return model;
@@ -36,7 +35,7 @@ public abstract class AbstractController {
 		getModel().getFilmsModel().setData(films);
 	}
 
-	protected void updatePathsModel() {
+	protected void updateFoldersModel() {
 		List<FolderEntity> folders = abstractDAOFactory.getFolderDAO()
 				.getFolders();
 		getModel().getFoldersModel().setData(folders);

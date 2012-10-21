@@ -7,6 +7,7 @@ import my.catalog.dao.FactoryType;
 import my.catalog.model.AppModel;
 import my.catalog.model.IAppModel;
 import my.catalog.service.DataLoader;
+import my.catalog.service.ScanFoldersController;
 import my.catalog.swing.view.FilmsView;
 
 public class Catalog {
@@ -21,6 +22,8 @@ public class Catalog {
 		DataLoader dataLoader = new DataLoader(model, abstractDAOFactory);
 		dataLoader.updateAllModels();
 
+		ScanFoldersController scaner = new ScanFoldersController(model);
+		scaner.runScanning();
 		JFrame catalog = new FilmsView(model);
 		catalog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		catalog.setVisible(true);

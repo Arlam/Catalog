@@ -3,9 +3,7 @@ package my.catalog.swing.view;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,7 +15,8 @@ import javax.swing.JPanel;
 import my.catalog.entities.FolderEntity;
 import my.catalog.model.IAppModel;
 import my.catalog.model.IFoldersModel;
-import my.catalog.service.AddNewFolder;
+import my.catalog.service.FoldersController;
+import my.catalog.swing.adapters.FoldersListModel;
 
 import org.apache.log4j.Logger;
 
@@ -27,6 +26,9 @@ public class FoldersView extends JDialog {
 	private static final String TITLE = "Configuration of input paths";
 	private IFoldersModel model;
 	private FoldersView view = this;
+	private FoldersController newFolderController;
+
+	private JList listOfFolders;
 
 	private JFileChooser fileChooser = new JFileChooser();
 
@@ -34,29 +36,28 @@ public class FoldersView extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int returnVal = fileChooser.showOpenDialog(view);
-		}
-	};
-
-	private ActionListener saveBtnListener = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			AddNewFolder newFolderController = new AddNewFolder(model);
-			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("PATH_VALUE", "E://Films");
-			newFolderController.call(params);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				FolderEntity folder = new FolderEntity();
+				File file = fileChooser.getSelectedFile();
+				folder.setFolder(file.getAbsolutePath());
+				newFolderController.addNewFolder(folder);
+				listOfFolders.updateUI();
+			}
 		}
 	};
 
 	public FoldersView(JFrame owner, IAppModel modelsFactory) {
 		super(owner, TITLE, true);
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		this.model = modelsFactory.getFoldersModel();
+		this.newFolderController = new FoldersController(modelsFactory);
+		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		FoldersListModel listModel = new FoldersListModel(model);
+		listOfFolders = new JList(listModel);
+
 		setSize(250, 250);
 		setResizable(false);
 		setLocationRelativeTo(owner);
-		List<FolderEntity> folders = model.getFolders();
-		LOG.debug(folders.size());
-		JList listOfFolders = new JList(folders.toArray());
+
 		add(listOfFolders, BorderLayout.CENTER);
 		JPanel panel = new JPanel();
 
@@ -64,9 +65,9 @@ public class FoldersView extends JDialog {
 		panel.add(newFolderBtn, BorderLayout.WEST);
 		newFolderBtn.addActionListener(openDirListener);
 
-		JButton saveFolderBtn = new JButton("Save");
-		saveFolderBtn.addActionListener(saveBtnListener);
-		panel.add(saveFolderBtn, BorderLayout.EAST);
+		// JButton saveFolderBtn = new JButton("Save");
+		// saveFolderBtn.addActionListener(saveBtnListener);
+		// panel.add(saveFolderBtn, BorderLayout.EAST);
 
 		add(panel, BorderLayout.SOUTH);
 

@@ -2,7 +2,6 @@ package my.catalog.service;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.entities.FilmEntity;
@@ -21,8 +20,7 @@ public class ScanFoldersController extends AbstractController {
 		super(model);
 	}
 
-	@Override
-	public void call(Map<String, Object> params) {
+	public void runScanning() {
 		AbstractDAOFactory factory = AbstractDAOFactory.getActiveDaoFactory();
 		List<FolderEntity> pathEntities = factory.getFolderDAO().getFolders();
 		for (FolderEntity pathEntity : pathEntities) {
