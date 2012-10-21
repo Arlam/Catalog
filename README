@@ -2,3 +2,5 @@
 2. Change DB settings:
  	2.1 Copy file hibernate.cfg.xml.example into hibernate.cfg.xml and set your properties
 	"connection.url", "connection.username", "connection.password"
+3. Run mvn install.
+4. Run java -jar FilmsCatalog.jar in folder target.    
