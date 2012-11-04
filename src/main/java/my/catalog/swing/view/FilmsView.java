@@ -7,20 +7,24 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import my.catalog.model.IAppModel;
 import my.catalog.swing.actions.AbstractMenuButton;
 import my.catalog.swing.actions.ExitButton;
 import my.catalog.swing.actions.ShowFoldersButton;
+import my.catalog.swing.actions.TableHeaderOnClickListener;
 import my.catalog.swing.adapters.FilmsTableModel;
 
 public class FilmsView extends JFrame {
-
 	private static final long serialVersionUID = -2575244459991309147L;
 
 	private static final int DEFAULT_WIDTH = 1100;
 	private static final int DEFAULT_HEIGHT = 800;
+
+	private final boolean[] sortingState = { false, false, false, false, false,
+			false, false };
 
 	public FilmsView(IAppModel modelsFactory) {
 		// temporary for tests
@@ -46,11 +50,9 @@ public class FilmsView extends JFrame {
 
 		TableModel tableModel = new FilmsTableModel(modelsFactory);
 		JTable table = new JTable(tableModel);
-		// TableColumn watchColumn = table.getColumnModel().getColumn(5);
-		// watchColumn.setCellRenderer(new ComboBoxRenderer(new String[] {
-		// "true",
-		// "false" }));
-		// watchColumn.setCellEditor(new ComboBoxEditor());
+		JTableHeader header = table.getTableHeader();
+		header.addMouseListener(new TableHeaderOnClickListener(modelsFactory
+				.getFilmsModel(), sortingState));
 		add(new JScrollPane(table));
 
 		setColumnsSize(table);
