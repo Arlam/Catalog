@@ -11,13 +11,14 @@ import my.catalog.utils.Utility;
 
 import org.apache.log4j.Logger;
 
-public class ScanFoldersController extends AbstractController {
+public class ScanFoldersController {
 	private static final Logger LOG = Logger
 			.getLogger(ScanFoldersController.class);
 	private final static String REGEX = ".*\\.avi";
+	private IAppModel model;
 
 	public ScanFoldersController(IAppModel model) {
-		super(model);
+		this.model = model;
 	}
 
 	public void runScanning() {
@@ -31,10 +32,11 @@ public class ScanFoldersController extends AbstractController {
 				if (id == null) {
 					LOG.info(film.getName() + " skipped.");
 				} else {
+					model.getFilmsModel().addFilm(
+							factory.getFilmDAO().getFilmById(id));
 					LOG.info(film.getName() + " added to BD.");
 				}
 			}
 		}
-		updateFilmsModel();
 	}
 }

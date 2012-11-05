@@ -6,4 +6,6 @@ import my.catalog.entities.FolderEntity;
 
 public interface IFoldersManager {
 	public void setData(List<FolderEntity> folders);
+
+	public void addFolder(FolderEntity folder);
 }

@@ -31,4 +31,20 @@ public class FilmsModel implements IFilmsModel, IModelManagement {
 
 	}
 
+	@Override
+	public void addFilm(FilmEntity film) {
+		films.add(film);
+
+	}
+
+	@Override
+	public void update(FilmEntity film) {
+		for (int i = 0; i < films.size(); i++) {
+			if (films.get(i).getId() == film.getId()) {
+				films.set(i, film);
+			}
+		}
+
+	}
+
 }

@@ -1,16 +1,21 @@
 package my.catalog.service;
 
+import java.util.List;
 import java.util.Map;
 
 import my.catalog.dao.AbstractDAOFactory;
+import my.catalog.entities.FilmEntity;
+import my.catalog.entities.FolderEntity;
+import my.catalog.entities.GenreEntity;
+import my.catalog.entities.LanguageEntity;
 import my.catalog.model.IAppModel;
 
-public class DataLoader extends AbstractController {
-	IAppModel model;
-	AbstractDAOFactory abstractDAOFactory;
+public class DataLoader {
+	private IAppModel appModel;
+	private AbstractDAOFactory abstractDAOFactory;
 
 	public DataLoader(IAppModel model, AbstractDAOFactory abstractDAOFactory) {
-		super(model, abstractDAOFactory);
+		this.appModel = model;
 		this.abstractDAOFactory = abstractDAOFactory;
 	}
 
@@ -23,5 +28,28 @@ public class DataLoader extends AbstractController {
 		updateLanguageModel();
 		updateGanreModel();
 		updateFilmsModel();
+	}
+
+	protected void updateFilmsModel() {
+		List<FilmEntity> films = abstractDAOFactory.getFilmDAO().getAllFilms();
+		appModel.getFilmsModel().setData(films);
+	}
+
+	public void updateFoldersModel() {
+		List<FolderEntity> folders = abstractDAOFactory.getFolderDAO()
+				.getFolders();
+		appModel.getFoldersModel().setData(folders);
+	}
+
+	public void updateLanguageModel() {
+		List<LanguageEntity> languages = abstractDAOFactory.getLanguageDAO()
+				.getAllLanguages();
+		appModel.getLanguagesModel().setData(languages);
+	}
+
+	public void updateGanreModel() {
+		List<GenreEntity> ganres = abstractDAOFactory.getGenreDAO()
+				.getAllGanres();
+		appModel.getGenreModel().setData(ganres);
 	}
 }

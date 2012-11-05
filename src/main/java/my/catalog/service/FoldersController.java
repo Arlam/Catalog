@@ -7,11 +7,12 @@ import my.catalog.model.IAppModel;
 
 import org.apache.log4j.Logger;
 
-public class FoldersController extends AbstractController {
+public class FoldersController {
 	private static final Logger LOG = Logger.getLogger(FoldersController.class);
+	private IAppModel model;
 
 	public FoldersController(IAppModel model) {
-		super(model);
+		this.model = model;
 	}
 
 	public void addNewFolder(FolderEntity folder) {
@@ -21,9 +22,9 @@ public class FoldersController extends AbstractController {
 		if (id == null) {
 			LOG.info(" skipped.");
 		} else {
+			model.getFoldersModel().addFolder(folderDAO.getFolder(id));
 			LOG.info(" added to BD.");
 		}
-		updateFoldersModel();
 	}
 
 }

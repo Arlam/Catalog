@@ -10,4 +10,8 @@ public interface IModelManagement {
 
 	public void setData(List<FilmEntity> films);
 
+	public void addFilm(FilmEntity film);
+
+	public void update(FilmEntity film);
+
 }

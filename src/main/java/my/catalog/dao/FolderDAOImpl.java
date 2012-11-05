@@ -29,7 +29,7 @@ public class FolderDAOImpl implements FolderDAO {
 		} catch (HibernateException e) {
 			LOG.warn(e.getMessage());
 			session.getTransaction().rollback();
-		}finally{
+		} finally {
 			session.close();
 		}
 		return id;
@@ -46,6 +46,15 @@ public class FolderDAOImpl implements FolderDAO {
 		session.getTransaction().commit();
 		session.close();
 		return entities;
+	}
+
+	@Override
+	public FolderEntity getFolder(Integer id) {
+		Session session = sessionFactory.openSession();
+		FolderEntity entity = (FolderEntity) session
+				.get(FolderEntity.class, id);
+		session.close();
+		return entity;
 	}
 
 }

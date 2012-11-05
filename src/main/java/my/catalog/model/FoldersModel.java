@@ -19,4 +19,13 @@ public class FoldersModel implements IFoldersModel {
 
 	}
 
+	@Override
+	public void addFolder(FolderEntity folder) {
+		for (int i = 0; i < folders.size(); i++) {
+			if (folders.get(i).getId() == folder.getId()) {
+				folders.set(i, folder);
+			}
+		}
+
+	}
 }
