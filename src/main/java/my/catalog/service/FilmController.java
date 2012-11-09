@@ -3,21 +3,21 @@ package my.catalog.service;
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.dao.FilmDAO;
 import my.catalog.entities.FilmEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IDataUpdater;
 
 public class FilmController {
 
-	private IAppModel appModel;
-	private FilmDAO filmDAO;
+	private final FilmDAO filmDAO;
+	private final IDataUpdater<FilmEntity> model;
 
-	public FilmController(IAppModel model) {
-		this.appModel = model;
+	public FilmController(IDataUpdater<FilmEntity> model) {
+		this.model = model;
 		filmDAO = AbstractDAOFactory.getActiveDaoFactory().getFilmDAO();
 	}
 
 	public void updateFilm(FilmEntity film) {
 		filmDAO.updateFilm(film);
-		appModel.getFilmsModel().update(film);
+		model.update(film);
 	}
 
 }

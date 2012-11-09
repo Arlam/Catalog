@@ -22,7 +22,7 @@ public class FoldersController {
 		if (id == null) {
 			LOG.info(" skipped.");
 		} else {
-			model.getFoldersModel().addFolder(folderDAO.getFolder(id));
+			model.getFoldersModel().add(folderDAO.getFolder(id));
 			LOG.info(" added to BD.");
 		}
 	}

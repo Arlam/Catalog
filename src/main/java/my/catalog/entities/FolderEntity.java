@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "folders")
-public class FolderEntity {
+public class FolderEntity implements IEntity {
 
 	@Id
 	@Column(name = "id")

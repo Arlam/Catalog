@@ -39,26 +39,9 @@ public class UtilityTests {
 		assertEquals(expectedName, Utility.fileToFIlm(file).getName());
 	}
 
-	// @Test
-	// public void testParseLanguage() {
-	// LanguageEntity ukrLng = new LanguageEntity();
-	// ukrLng.setName(name)
-	// assertEquals("rus,ua,eng",
-	// Utility.getValue(correctFileName, PatternType.LANGUAGE));
-	// assertNull(Utility.getValue(wrongNameFormat, PatternType.LANGUAGE));
-	// }
-
 	@Test
 	public void testParseYear() {
 		assertEquals(new Integer(2006), Utility.getYEAR(correctFileName));
 		assertNull(Utility.getYEAR(wrongNameFormat));
 	}
-
-	// @Test
-	// public void testParseNamer() {
-	// assertEquals("Тачки",
-	// Utility.getValue(correctFileName, PatternType.NAME));
-	// assertEquals("Тачки",
-	// Utility.getValue(wrongNameFormat, PatternType.NAME));
-	// }
 }

@@ -12,11 +12,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "languages")
-public class LanguageEntity {
+public class LanguageEntity implements IEntity {
 	@Id
 	@Column(name = "language_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(name = "name")
 	private String name;
@@ -27,11 +27,11 @@ public class LanguageEntity {
 	@ManyToMany(mappedBy = "languages")
 	private Set<FilmEntity> films;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

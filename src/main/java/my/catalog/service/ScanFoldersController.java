@@ -32,7 +32,7 @@ public class ScanFoldersController {
 				if (id == null) {
 					LOG.info(film.getName() + " skipped.");
 				} else {
-					model.getFilmsModel().addFilm(
+					model.getFilmsModel().add(
 							factory.getFilmDAO().getFilmById(id));
 					LOG.info(film.getName() + " added to BD.");
 				}

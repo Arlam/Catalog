@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import my.catalog.entities.FolderEntity;
 import my.catalog.model.IAppModel;
-import my.catalog.model.IFoldersModel;
+import my.catalog.model.impl.ServerSideDataModel;
 import my.catalog.service.FoldersController;
 import my.catalog.swing.adapters.FoldersListModel;
 
@@ -24,7 +24,7 @@ public class FoldersView extends JDialog {
 	private static final Logger LOG = Logger.getLogger(FoldersView.class);
 	private static final long serialVersionUID = -3287258340585248456L;
 	private static final String TITLE = "Configuration of input paths";
-	private IFoldersModel model;
+	private ServerSideDataModel<FolderEntity> model;
 	private FoldersView view = this;
 	private FoldersController newFolderController;
 

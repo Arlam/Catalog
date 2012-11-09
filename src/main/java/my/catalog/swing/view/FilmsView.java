@@ -10,7 +10,9 @@ import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
+import my.catalog.entities.FilmEntity;
 import my.catalog.model.IAppModel;
+import my.catalog.model.impl.CurrentSessionDataModel;
 import my.catalog.swing.actions.AbstractMenuButton;
 import my.catalog.swing.actions.ExitButton;
 import my.catalog.swing.actions.ShowFoldersButton;
@@ -48,11 +50,14 @@ public class FilmsView extends JFrame {
 
 		add(toolbar, BorderLayout.NORTH);
 
-		TableModel tableModel = new FilmsTableModel(modelsFactory);
+		CurrentSessionDataModel<FilmEntity> filmsModel = new CurrentSessionDataModel<FilmEntity>();
+		modelsFactory.getFilmsModel().addObserver(filmsModel);
+		TableModel tableModel = new FilmsTableModel(
+				modelsFactory.getFilmsModel(), filmsModel);
 		JTable table = new JTable(tableModel);
 		JTableHeader header = table.getTableHeader();
-		header.addMouseListener(new TableHeaderOnClickListener(modelsFactory
-				.getFilmsModel(), sortingState));
+		header.addMouseListener(new TableHeaderOnClickListener(filmsModel,
+				sortingState));
 		add(new JScrollPane(table));
 
 		setColumnsSize(table);

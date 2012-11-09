@@ -16,36 +16,32 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "films", uniqueConstraints = {@UniqueConstraint(columnNames = { "path"})})
-public class FilmEntity {
+@Table(name = "films", uniqueConstraints = { @UniqueConstraint(columnNames = { "path" }) })
+public class FilmEntity implements IEntity {
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(name = "name", length = 255)
 	private String name;
-	
+
 	@Column(name = "version", length = 32)
 	private String version;
 
 	@Column(name = "fileSize")
 	private Integer fileSize;
-	
+
 	@Column(name = "year")
 	private Integer year;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		@JoinTable(name = "films_languages", 
-		joinColumns = { @JoinColumn(name = "id", nullable = false, updatable = false) }, 
-		inverseJoinColumns = { @JoinColumn(name = "language_id", nullable = false, updatable = false) })
+	@JoinTable(name = "films_languages", joinColumns = { @JoinColumn(name = "id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "language_id", nullable = false, updatable = false) })
 	private Set<LanguageEntity> languages;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-		@JoinTable(name = "films_genres", 
-		joinColumns = {@JoinColumn(name = "id") }, 
-		inverseJoinColumns = {@JoinColumn(name = "ganre_id") })
+	@JoinTable(name = "films_genres", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = { @JoinColumn(name = "ganre_id") })
 	private Set<GenreEntity> genres;
 
 	@Column(name = "description")
@@ -60,7 +56,7 @@ public class FilmEntity {
 	@Column(name = "existed")
 	private Boolean existed;
 
-	@Column(name = "path", length = 255, unique=true)
+	@Column(name = "path", length = 255, unique = true)
 	private String path;
 
 	public FilmEntity() {
@@ -70,11 +66,11 @@ public class FilmEntity {
 
 	// Getters and setters
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

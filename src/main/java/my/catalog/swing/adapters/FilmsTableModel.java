@@ -3,20 +3,22 @@ package my.catalog.swing.adapters;
 import javax.swing.table.AbstractTableModel;
 
 import my.catalog.entities.FilmEntity;
-import my.catalog.model.IAppModel;
-import my.catalog.model.IFilmsModel;
+import my.catalog.model.IDataProvider;
+import my.catalog.model.impl.CurrentSessionDataModel;
+import my.catalog.model.impl.ServerSideDataModel;
 import my.catalog.service.FilmController;
 
 public class FilmsTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 7164003784495156620L;
 
-	private IFilmsModel filmsModel;
-	private FilmController filmController;
+	private final IDataProvider<FilmEntity> filmsModel;
+	private final FilmController filmController;
 
-	public FilmsTableModel(IAppModel models) {
-		this.filmsModel = models.getFilmsModel();
-		this.filmController = new FilmController(models);
+	public FilmsTableModel(ServerSideDataModel<FilmEntity> rootModel,
+			CurrentSessionDataModel<FilmEntity> filmsModel) {
+		this.filmsModel = filmsModel;
+		this.filmController = new FilmController(rootModel);
 	}
 
 	@Override
@@ -26,12 +28,12 @@ public class FilmsTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return filmsModel.getFilms().size();
+		return filmsModel.getAll().size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		FilmEntity film = filmsModel.getFilms().get(rowIndex);
+		FilmEntity film = filmsModel.getAll().get(rowIndex);
 		switch (columnIndex) {
 		case 0:
 			return rowIndex + 1;
@@ -97,7 +99,7 @@ public class FilmsTableModel extends AbstractTableModel {
 
 	@Override
 	public void setValueAt(Object value, int rowIndex, int columnIndex) {
-		FilmEntity film = filmsModel.getFilm(rowIndex);
+		FilmEntity film = filmsModel.get(rowIndex);
 		switch (columnIndex) {
 		case 1:
 			film.setName((String) value);

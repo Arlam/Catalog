@@ -11,15 +11,17 @@ import my.catalog.comparators.NameComparator;
 import my.catalog.comparators.RateComparator;
 import my.catalog.comparators.WatchStateComparator;
 import my.catalog.comparators.YearComparator;
-import my.catalog.model.IFilmsModel;
+import my.catalog.entities.FilmEntity;
+import my.catalog.model.SortableModel;
 import my.catalog.service.FilmsSorter;
 
 public class TableHeaderOnClickListener extends MouseAdapter {
 	private FilmsSorter filmsSorter = new FilmsSorter();
-	private IFilmsModel model;
+	private SortableModel<FilmEntity> model;
 	private boolean[] sortingStates;
 
-	public TableHeaderOnClickListener(IFilmsModel model, boolean[] sortingStates) {
+	public TableHeaderOnClickListener(SortableModel<FilmEntity> model,
+			boolean[] sortingStates) {
 		this.model = model;
 		this.sortingStates = sortingStates;
 	}

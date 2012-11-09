@@ -32,24 +32,24 @@ public class DataLoader {
 
 	protected void updateFilmsModel() {
 		List<FilmEntity> films = abstractDAOFactory.getFilmDAO().getAllFilms();
-		appModel.getFilmsModel().setData(films);
+		appModel.getFilmsModel().add(films);
 	}
 
 	public void updateFoldersModel() {
 		List<FolderEntity> folders = abstractDAOFactory.getFolderDAO()
 				.getFolders();
-		appModel.getFoldersModel().setData(folders);
+		appModel.getFoldersModel().add(folders);
 	}
 
 	public void updateLanguageModel() {
 		List<LanguageEntity> languages = abstractDAOFactory.getLanguageDAO()
 				.getAllLanguages();
-		appModel.getLanguagesModel().setData(languages);
+		appModel.getLanguagesModel().add(languages);
 	}
 
 	public void updateGanreModel() {
 		List<GenreEntity> ganres = abstractDAOFactory.getGenreDAO()
 				.getAllGanres();
-		appModel.getGenreModel().setData(ganres);
+		appModel.getGenreModel().add(ganres);
 	}
 }

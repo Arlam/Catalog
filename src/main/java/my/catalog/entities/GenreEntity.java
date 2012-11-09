@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "genres")
-public class GenreEntity implements Serializable {
+public class GenreEntity implements IEntity, Serializable {
 	private static final long serialVersionUID = -5191457837781027430L;
 
 	@Id

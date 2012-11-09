@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.dao.FactoryType;
-import my.catalog.model.AppModel;
 import my.catalog.model.IAppModel;
+import my.catalog.model.impl.AppModel;
 import my.catalog.service.DataLoader;
 import my.catalog.service.ScanFoldersController;
 import my.catalog.swing.view.FilmsView;

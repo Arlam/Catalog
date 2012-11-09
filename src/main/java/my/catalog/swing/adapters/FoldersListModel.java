@@ -3,12 +3,13 @@ package my.catalog.swing.adapters;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
-import my.catalog.model.IFoldersModel;
+import my.catalog.entities.FolderEntity;
+import my.catalog.model.impl.ServerSideDataModel;
 
 public class FoldersListModel implements ListModel {
-	private IFoldersModel model;
+	private ServerSideDataModel<FolderEntity> model;
 
-	public FoldersListModel(IFoldersModel model) {
+	public FoldersListModel(ServerSideDataModel<FolderEntity> model) {
 		this.model = model;
 	}
 
@@ -20,13 +21,12 @@ public class FoldersListModel implements ListModel {
 
 	@Override
 	public Object getElementAt(int index) {
-		return model.getFolders().get(index);
+		return model.getAll().get(index);
 	}
 
 	@Override
 	public int getSize() {
-		System.out.println(model.getFolders().size());
-		return model.getFolders().size();
+		return model.getAll().size();
 	}
 
 	@Override
