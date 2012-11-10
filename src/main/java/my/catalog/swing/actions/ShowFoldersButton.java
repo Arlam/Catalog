@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 import my.catalog.swing.view.FoldersView;
 
 public class ShowFoldersButton extends AbstractMenuButton {
@@ -12,9 +12,9 @@ public class ShowFoldersButton extends AbstractMenuButton {
 	private static final String TOOL_TIP = "Open paths config";
 	private static final String IMG_NAME = "AddFolder.png";
 	private JFrame owner = null;
-	private IAppModel modelsFactory;
+	private IAppModelFactory modelsFactory;
 
-	public ShowFoldersButton(JFrame owner, IAppModel factory) {
+	public ShowFoldersButton(JFrame owner, IAppModelFactory factory) {
 		super(TOOL_TIP, IMG_NAME);
 		this.owner = owner;
 		this.modelsFactory = factory;

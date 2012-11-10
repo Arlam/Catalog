@@ -13,7 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import my.catalog.entities.FolderEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 import my.catalog.model.impl.ServerSideDataModel;
 import my.catalog.service.FoldersController;
 import my.catalog.swing.adapters.FoldersListModel;
@@ -46,7 +46,7 @@ public class FoldersView extends JDialog {
 		}
 	};
 
-	public FoldersView(JFrame owner, IAppModel modelsFactory) {
+	public FoldersView(JFrame owner, IAppModelFactory modelsFactory) {
 		super(owner, TITLE, true);
 		this.model = modelsFactory.getFoldersModel();
 		this.newFolderController = new FoldersController(modelsFactory);

@@ -6,7 +6,7 @@ import my.catalog.entities.GenreEntity;
 import my.catalog.entities.LanguageEntity;
 import my.catalog.model.impl.ServerSideDataModel;
 
-public interface IAppModel {
+public interface IAppModelFactory {
 
 	public ServerSideDataModel<FilmEntity> getFilmsModel();
 

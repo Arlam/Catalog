@@ -3,15 +3,15 @@ package my.catalog.service;
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.dao.GenericDAO;
 import my.catalog.entities.FolderEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 
 import org.apache.log4j.Logger;
 
 public class FoldersController {
 	private static final Logger LOG = Logger.getLogger(FoldersController.class);
-	private IAppModel model;
+	private IAppModelFactory model;
 
-	public FoldersController(IAppModel model) {
+	public FoldersController(IAppModelFactory model) {
 		this.model = model;
 	}
 

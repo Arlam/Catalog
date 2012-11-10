@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.dao.FactoryType;
-import my.catalog.model.IAppModel;
-import my.catalog.model.impl.AppModel;
+import my.catalog.model.IAppModelFactory;
+import my.catalog.model.impl.AppModelFactory;
 import my.catalog.service.DataLoader;
 import my.catalog.service.ScanFoldersController;
 import my.catalog.swing.view.FilmsView;
@@ -18,7 +18,7 @@ public class Catalog {
 	public static void main(String[] args) {
 		AbstractDAOFactory abstractDAOFactory = AbstractDAOFactory
 				.initFactory(FactoryType.MY_SQL_FACTORY);
-		IAppModel model = new AppModel();
+		IAppModelFactory model = new AppModelFactory();
 		DataLoader dataLoader = new DataLoader(model, abstractDAOFactory);
 		dataLoader.updateAllModels();
 

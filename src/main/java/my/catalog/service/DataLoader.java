@@ -7,13 +7,13 @@ import my.catalog.entities.FilmEntity;
 import my.catalog.entities.FolderEntity;
 import my.catalog.entities.GenreEntity;
 import my.catalog.entities.LanguageEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 
 public class DataLoader {
-	private IAppModel appModel;
+	private IAppModelFactory appModel;
 	private AbstractDAOFactory abstractDAOFactory;
 
-	public DataLoader(IAppModel model, AbstractDAOFactory abstractDAOFactory) {
+	public DataLoader(IAppModelFactory model, AbstractDAOFactory abstractDAOFactory) {
 		this.appModel = model;
 		this.abstractDAOFactory = abstractDAOFactory;
 	}

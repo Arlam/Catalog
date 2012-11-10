@@ -49,7 +49,7 @@ public class FilmEntity implements IEntity, Serializable {
 	private String description;
 
 	@Column(name = "rate")
-	private Integer rate;
+	private Integer rating;
 
 	@Column(name = "watched")
 	private Boolean watched;
@@ -67,6 +67,7 @@ public class FilmEntity implements IEntity, Serializable {
 
 	// Getters and setters
 
+	@Override
 	public Integer getId() {
 		return id;
 	}
@@ -128,11 +129,11 @@ public class FilmEntity implements IEntity, Serializable {
 	}
 
 	public Integer getRate() {
-		return rate;
+		return rating;
 	}
 
 	public void setRate(Integer rate) {
-		this.rate = rate;
+		this.rating = rate;
 	}
 
 	public Boolean isWatched() {

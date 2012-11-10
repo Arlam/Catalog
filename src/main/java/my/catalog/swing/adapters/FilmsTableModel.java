@@ -56,6 +56,10 @@ public class FilmsTableModel extends AbstractTableModel {
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
+		case 2:
+			return Integer.class;
+		case 4:
+			return Integer.class;
 		case 5:
 			return Boolean.class;
 		}
@@ -103,6 +107,14 @@ public class FilmsTableModel extends AbstractTableModel {
 		switch (columnIndex) {
 		case 1:
 			film.setName((String) value);
+			break;
+		case 2:
+			film.setYear((Integer) value);
+			break;
+		case 4:
+			Integer rate = (Integer) value;
+			if (rate >= 0 || rate < 11)
+				film.setRate((Integer) value);
 			break;
 		case 5:
 

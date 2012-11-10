@@ -27,6 +27,7 @@ public class GenreEntity implements IEntity, Serializable {
 	@ManyToMany(mappedBy = "genres")
 	private Set<FilmEntity> films;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}

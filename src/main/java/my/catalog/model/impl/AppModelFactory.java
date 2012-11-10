@@ -4,15 +4,15 @@ import my.catalog.entities.FilmEntity;
 import my.catalog.entities.FolderEntity;
 import my.catalog.entities.GenreEntity;
 import my.catalog.entities.LanguageEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 
-public class AppModel implements IAppModel {
+public class AppModelFactory implements IAppModelFactory {
 	private ServerSideDataModel<FilmEntity> filmsModel;
 	private ServerSideDataModel<FolderEntity> pathsModel;
 	private ServerSideDataModel<LanguageEntity> languagesModel;
 	private ServerSideDataModel<GenreEntity> genresModel;
 
-	public AppModel() {
+	public AppModelFactory() {
 		filmsModel = new ServerSideDataModel<FilmEntity>();
 		pathsModel = new ServerSideDataModel<FolderEntity>();
 		languagesModel = new ServerSideDataModel<LanguageEntity>();

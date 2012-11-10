@@ -11,7 +11,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
 
 import my.catalog.entities.FilmEntity;
-import my.catalog.model.IAppModel;
+import my.catalog.model.IAppModelFactory;
 import my.catalog.model.impl.CurrentSessionDataModel;
 import my.catalog.swing.actions.AbstractMenuButton;
 import my.catalog.swing.actions.ExitButton;
@@ -28,7 +28,7 @@ public class FilmsView extends JFrame {
 	private final boolean[] sortingState = { false, false, false, false, false,
 			false, false };
 
-	public FilmsView(IAppModel modelsFactory) {
+	public FilmsView(IAppModelFactory modelsFactory) {
 		// temporary for tests
 		// AddNewFolder newFolderController = new AddNewFolder(
 		// RootModel.getFoldersModel());
@@ -75,7 +75,7 @@ public class FilmsView extends JFrame {
 
 	}
 
-	private Container createToolBar(IAppModel factory) {
+	private Container createToolBar(IAppModelFactory factory) {
 		Container toolbar = new Container();
 		FlowLayout containerLayout = new FlowLayout();
 		containerLayout.setAlignment(FlowLayout.LEFT);
