@@ -1,7 +1,7 @@
 package my.catalog.service;
 
 import my.catalog.dao.AbstractDAOFactory;
-import my.catalog.dao.FolderDAO;
+import my.catalog.dao.GenericDAO;
 import my.catalog.entities.FolderEntity;
 import my.catalog.model.IAppModel;
 
@@ -16,13 +16,13 @@ public class FoldersController {
 	}
 
 	public void addNewFolder(FolderEntity folder) {
-		FolderDAO folderDAO = AbstractDAOFactory.getActiveDaoFactory()
-				.getFolderDAO();
-		Integer id = folderDAO.createFolder(folder);
+		GenericDAO<FolderEntity> folderDAO = AbstractDAOFactory
+				.getActiveDaoFactory().getFolderDAO();
+		Integer id = folderDAO.add(folder);
 		if (id == null) {
 			LOG.info(" skipped.");
 		} else {
-			model.getFoldersModel().add(folderDAO.getFolder(id));
+			model.getFoldersModel().add(folderDAO.get(id));
 			LOG.info(" added to BD.");
 		}
 	}

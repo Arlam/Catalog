@@ -1,5 +1,7 @@
 package my.catalog.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "folders")
-public class FolderEntity implements IEntity {
+public class FolderEntity implements IEntity, Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -19,6 +21,7 @@ public class FolderEntity implements IEntity {
 	@Column(name = "folder", unique = true)
 	private String folder;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}

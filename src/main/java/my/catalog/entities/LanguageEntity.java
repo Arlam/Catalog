@@ -1,5 +1,6 @@
 package my.catalog.entities;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "languages")
-public class LanguageEntity implements IEntity {
+public class LanguageEntity implements IEntity, Serializable {
 	@Id
 	@Column(name = "language_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +28,7 @@ public class LanguageEntity implements IEntity {
 	@ManyToMany(mappedBy = "languages")
 	private Set<FilmEntity> films;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}

@@ -6,8 +6,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import my.catalog.entities.IEntity;
-import my.catalog.model.IDataUpdater;
 import my.catalog.model.IDataProvider;
+import my.catalog.model.IDataUpdater;
 
 public class ServerSideDataModel<T extends IEntity> extends Observable
 		implements IDataUpdater<T>, IDataProvider<T> {
@@ -35,7 +35,7 @@ public class ServerSideDataModel<T extends IEntity> extends Observable
 			}
 
 		}
-		notifyObservers(list);
+		// notifyObservers(list);
 	}
 
 	@Override

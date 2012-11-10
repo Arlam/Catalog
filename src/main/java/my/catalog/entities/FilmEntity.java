@@ -1,5 +1,6 @@
 package my.catalog.entities;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "films", uniqueConstraints = { @UniqueConstraint(columnNames = { "path" }) })
-public class FilmEntity implements IEntity {
+public class FilmEntity implements IEntity, Serializable {
 
 	@Id
 	@Column(name = "id")

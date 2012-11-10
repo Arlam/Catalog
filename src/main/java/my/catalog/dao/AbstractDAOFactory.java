@@ -1,16 +1,21 @@
 package my.catalog.dao;
 
+import my.catalog.dao.mysql.MySQLDAOFactory;
+import my.catalog.entities.FilmEntity;
+import my.catalog.entities.FolderEntity;
+import my.catalog.entities.GenreEntity;
+import my.catalog.entities.LanguageEntity;
 
 public abstract class AbstractDAOFactory {
 	private static AbstractDAOFactory daoFactory;
 
-	public abstract FilmDAO getFilmDAO();
+	public abstract GenericDAO<FilmEntity> getFilmDAO();
 
-	public abstract FolderDAO getFolderDAO();
+	public abstract GenericDAO<FolderEntity> getFolderDAO();
 
-	public abstract LanguageDAO getLanguageDAO();
+	public abstract GenericDAO<LanguageEntity> getLanguageDAO();
 
-	public abstract GenreDAO getGenreDAO();
+	public abstract GenericDAO<GenreEntity> getGenreDAO();
 
 	public static AbstractDAOFactory initFactory(FactoryType type) {
 		switch (type) {

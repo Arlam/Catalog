@@ -1,7 +1,6 @@
 package my.catalog.service;
 
 import java.util.List;
-import java.util.Map;
 
 import my.catalog.dao.AbstractDAOFactory;
 import my.catalog.entities.FilmEntity;
@@ -19,10 +18,6 @@ public class DataLoader {
 		this.abstractDAOFactory = abstractDAOFactory;
 	}
 
-	public void call(Map<String, Object> params) {
-		updateFilmsModel();
-	}
-
 	public void updateAllModels() {
 		updateFoldersModel();
 		updateLanguageModel();
@@ -31,25 +26,23 @@ public class DataLoader {
 	}
 
 	protected void updateFilmsModel() {
-		List<FilmEntity> films = abstractDAOFactory.getFilmDAO().getAllFilms();
+		List<FilmEntity> films = abstractDAOFactory.getFilmDAO().getAll();
 		appModel.getFilmsModel().add(films);
 	}
 
 	public void updateFoldersModel() {
-		List<FolderEntity> folders = abstractDAOFactory.getFolderDAO()
-				.getFolders();
+		List<FolderEntity> folders = abstractDAOFactory.getFolderDAO().getAll();
 		appModel.getFoldersModel().add(folders);
 	}
 
 	public void updateLanguageModel() {
 		List<LanguageEntity> languages = abstractDAOFactory.getLanguageDAO()
-				.getAllLanguages();
+				.getAll();
 		appModel.getLanguagesModel().add(languages);
 	}
 
 	public void updateGanreModel() {
-		List<GenreEntity> ganres = abstractDAOFactory.getGenreDAO()
-				.getAllGanres();
+		List<GenreEntity> ganres = abstractDAOFactory.getGenreDAO().getAll();
 		appModel.getGenreModel().add(ganres);
 	}
 }

@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class FoldersView extends JDialog {
 	private static final Logger LOG = Logger.getLogger(FoldersView.class);
 	private static final long serialVersionUID = -3287258340585248456L;
-	private static final String TITLE = "Configuration of input paths";
+	private static final String TITLE = "Configuration of input paths"; //$NON-NLS-1$
 	private ServerSideDataModel<FolderEntity> model;
 	private FoldersView view = this;
 	private FoldersController newFolderController;
@@ -61,7 +61,7 @@ public class FoldersView extends JDialog {
 		add(listOfFolders, BorderLayout.CENTER);
 		JPanel panel = new JPanel();
 
-		JButton newFolderBtn = new JButton("Add new folder");
+		JButton newFolderBtn = new JButton("Add new folder"); //$NON-NLS-1$
 		panel.add(newFolderBtn, BorderLayout.WEST);
 		newFolderBtn.addActionListener(openDirListener);
 
