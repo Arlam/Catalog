@@ -72,6 +72,7 @@ public class FilmEntity implements IEntity, Serializable {
 		return id;
 	}
 
+	@Override
 	public void setId(Integer id) {
 		this.id = id;
 	}

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 import my.catalog.entities.FilmEntity;
@@ -24,26 +25,14 @@ public class FilmsView extends JFrame {
 
 	private static final int DEFAULT_WIDTH = 1100;
 	private static final int DEFAULT_HEIGHT = 800;
+	private static final String TITLE = "Catalog"; //$NON-NLS-1$
 
 	private final boolean[] sortingState = { false, false, false, false, false,
 			false, false };
 
 	public FilmsView(IAppModelFactory modelsFactory) {
-		// temporary for tests
-		// AddNewFolder newFolderController = new AddNewFolder(
-		// RootModel.getFoldersModel());
-		// Map<String, Object> params = new HashMap<String, Object>();
-		// params.put("PATH_VALUE", "E://Films");
-		// newFolderController.call(params);
-		// -----
-
-		// ScanFoldersController scanFoldersController = new
-		// ScanFoldersController(
-		// modelsFactory);
-		// scanFoldersController.call(null);
-
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-		setTitle("Catalog");
+		setTitle(TITLE);
 		setLocationRelativeTo(null);
 
 		Container toolbar = createToolBar(modelsFactory);
@@ -61,6 +50,10 @@ public class FilmsView extends JFrame {
 		add(new JScrollPane(table));
 
 		setColumnsSize(table);
+		TableColumn col = table.getColumnModel().getColumn(3);
+		table.removeColumn(col);
+		table.addColumn(col);
+
 	}
 
 	private void setColumnsSize(JTable table) {
@@ -88,6 +81,6 @@ public class FilmsView extends JFrame {
 		toolbar.add(exitButton);
 		toolbar.add(showAdmFoldersButton);
 		return toolbar;
-	};
+	}
 
 }

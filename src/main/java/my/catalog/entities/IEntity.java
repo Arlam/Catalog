@@ -1,5 +1,9 @@
 package my.catalog.entities;
 
-public interface IEntity {
+import java.io.Serializable;
+
+public interface IEntity extends Serializable {
 	public Integer getId();
+
+	public void setId(Integer id);
 }

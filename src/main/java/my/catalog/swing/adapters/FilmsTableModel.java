@@ -78,7 +78,7 @@ public class FilmsTableModel extends AbstractTableModel {
 		case 3:
 			return "Languages";
 		case 4:
-			return "Rate";
+			return "Rating";
 		case 5:
 			return "Watched";
 		case 6:
@@ -113,7 +113,7 @@ public class FilmsTableModel extends AbstractTableModel {
 			break;
 		case 4:
 			Integer rate = (Integer) value;
-			if (rate >= 0 || rate < 11)
+			if (rate >= 0 && rate < 11)
 				film.setRate((Integer) value);
 			break;
 		case 5:
