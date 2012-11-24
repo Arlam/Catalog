@@ -4,4 +4,4 @@
 loging.log
 build/
 target/
-/src/main/resources/hibernate.cfg.xml
+database.properties
