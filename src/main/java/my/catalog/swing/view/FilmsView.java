@@ -20,6 +20,8 @@ import my.catalog.swing.actions.ShowFoldersButton;
 import my.catalog.swing.actions.TableHeaderOnClickListener;
 import my.catalog.swing.adapters.FilmsTableModel;
 
+import org.springframework.context.ApplicationContext;
+
 public class FilmsView extends JFrame {
 	private static final long serialVersionUID = -2575244459991309147L;
 
@@ -30,7 +32,7 @@ public class FilmsView extends JFrame {
 	private final boolean[] sortingState = { false, false, false, false, false,
 			false, false };
 
-	public FilmsView(IAppModelFactory modelsFactory) {
+	public FilmsView(IAppModelFactory modelsFactory, ApplicationContext context) {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle(TITLE);
 		setLocationRelativeTo(null);
@@ -42,7 +44,7 @@ public class FilmsView extends JFrame {
 		CurrentSessionDataModel<FilmEntity> filmsModel = new CurrentSessionDataModel<FilmEntity>();
 		modelsFactory.getFilmsModel().addObserver(filmsModel);
 		TableModel tableModel = new FilmsTableModel(
-				modelsFactory.getFilmsModel(), filmsModel);
+				modelsFactory.getFilmsModel(), filmsModel, context);
 		JTable table = new JTable(tableModel);
 		JTableHeader header = table.getTableHeader();
 		header.addMouseListener(new TableHeaderOnClickListener(filmsModel,

@@ -28,7 +28,7 @@ public class Catalog {
 				.getBean(ScanFoldersController.class);
 		scaner.setModel(model);
 		scaner.runScanning();
-		JFrame catalog = new FilmsView(model);
+		JFrame catalog = new FilmsView(model, context);
 		catalog.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		catalog.setVisible(true);
 	}

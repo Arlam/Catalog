@@ -8,6 +8,8 @@ import my.catalog.model.IDataProvider;
 import my.catalog.model.impl.CurrentSessionDataModel;
 import my.catalog.model.impl.ServerSideDataModel;
 
+import org.springframework.context.ApplicationContext;
+
 public class FilmsTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 7164003784495156620L;
@@ -16,9 +18,11 @@ public class FilmsTableModel extends AbstractTableModel {
 	private final FilmController filmController;
 
 	public FilmsTableModel(ServerSideDataModel<FilmEntity> rootModel,
-			CurrentSessionDataModel<FilmEntity> filmsModel) {
+			CurrentSessionDataModel<FilmEntity> filmsModel,
+			ApplicationContext context) {
 		this.filmsModel = filmsModel;
-		this.filmController = new FilmController(rootModel);
+		this.filmController = context.getBean(FilmController.class);
+		this.filmController.setModel(rootModel);
 	}
 
 	@Override
