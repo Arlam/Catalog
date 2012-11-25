@@ -18,7 +18,6 @@
 	<tx:annotation-driven />
 
 	<!-- Auto scan the components -->
-	<context:component-scan base-package="homebuh.service" />
-	<context:component-scan base-package="homebuh.controlers" />
-	<context:component-scan base-package="homebuh.dao.impl" />
+	<context:component-scan base-package="my.catalog.dao.impl" />
+	<context:component-scan base-package="my.catalog.controllers" />
 </beans>

@@ -1,22 +1,22 @@
-package my.catalog.service;
+package my.catalog.controllers;
 
-import my.catalog.dao.AbstractDAOFactory;
-import my.catalog.dao.GenericDAO;
+import my.catalog.dao.IMovieDAO;
 import my.catalog.entities.FilmEntity;
 import my.catalog.model.IDataUpdater;
 
-public class FilmController {
+import org.springframework.beans.factory.annotation.Autowired;
 
-	private final GenericDAO<FilmEntity> filmDAO;
+public class FilmController {
+	@Autowired
+	private IMovieDAO movieDAO;
 	private final IDataUpdater<FilmEntity> model;
 
 	public FilmController(IDataUpdater<FilmEntity> model) {
 		this.model = model;
-		filmDAO = AbstractDAOFactory.getActiveDaoFactory().getFilmDAO();
 	}
 
 	public void updateFilm(FilmEntity film) {
-		filmDAO.update(film);
+		movieDAO.update(film);
 		model.update(film);
 	}
 

@@ -1,4 +1,4 @@
-package my.catalog.service;
+package my.catalog.controllers;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package my.catalog.service;
+package my.catalog.controllers;
 
 import my.catalog.comparators.IFilmsComparator;
 import my.catalog.entities.FilmEntity;

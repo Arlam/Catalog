@@ -2,11 +2,11 @@ package my.catalog.swing.adapters;
 
 import javax.swing.table.AbstractTableModel;
 
+import my.catalog.controllers.FilmController;
 import my.catalog.entities.FilmEntity;
 import my.catalog.model.IDataProvider;
 import my.catalog.model.impl.CurrentSessionDataModel;
 import my.catalog.model.impl.ServerSideDataModel;
-import my.catalog.service.FilmController;
 
 public class FilmsTableModel extends AbstractTableModel {
 

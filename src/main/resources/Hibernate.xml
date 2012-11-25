@@ -19,13 +19,16 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 			</props>
 		</property>
 
 		<property name="annotatedClasses">
 			<list>
-				<value>homebuh.entity.Movie</value>
+				<value>my.catalog.entities.FilmEntity</value>
+				<value>my.catalog.entities.FolderEntity</value>
+				<value>my.catalog.entities.GenreEntity</value>
+				<value>my.catalog.entities.LanguageEntity</value>
 			</list>
 		</property>
 

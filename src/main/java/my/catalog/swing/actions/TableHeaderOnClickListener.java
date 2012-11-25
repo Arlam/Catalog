@@ -11,9 +11,9 @@ import my.catalog.comparators.NameComparator;
 import my.catalog.comparators.RateComparator;
 import my.catalog.comparators.WatchStateComparator;
 import my.catalog.comparators.YearComparator;
+import my.catalog.controllers.FilmsSorter;
 import my.catalog.entities.FilmEntity;
 import my.catalog.model.SortableModel;
-import my.catalog.service.FilmsSorter;
 
 public class TableHeaderOnClickListener extends MouseAdapter {
 	private FilmsSorter filmsSorter = new FilmsSorter();

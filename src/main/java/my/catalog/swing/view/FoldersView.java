@@ -12,10 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+import my.catalog.controllers.FoldersController;
 import my.catalog.entities.FolderEntity;
 import my.catalog.model.IAppModelFactory;
 import my.catalog.model.impl.ServerSideDataModel;
-import my.catalog.service.FoldersController;
 import my.catalog.swing.adapters.FoldersListModel;
 
 import org.apache.log4j.Logger;
