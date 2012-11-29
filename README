@@ -1,3 +1,7 @@
-1. Create MySQL DB. run /db/create_DB.bat %root_password%
-2. Run mvn install.
-3. Run java -jar FilmsCatalog.jar in folder target.    
+Movies catalog.
+Rename 
+\FilmsCatalog\src\main\resources\properties\database.properties.example 
+to 
+\FilmsCatalog\src\main\resources\properties\database.properties
+and change password.
+ 
