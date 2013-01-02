@@ -37,7 +37,7 @@ public final class Utility {
 		FilmEntity film = new FilmEntity();
 		String fileName = file.getName();
 
-		film.setPath(file.getAbsolutePath());
+		// film.setPath(file.getAbsolutePath());
 		film.setName(fileName);
 		film.setYear(getYEAR(fileName));
 		return film;

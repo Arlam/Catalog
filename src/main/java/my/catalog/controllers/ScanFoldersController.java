@@ -1,11 +1,12 @@
 package my.catalog.controllers;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import my.catalog.dao.IFileDAO;
 import my.catalog.dao.IFolderDAO;
-import my.catalog.dao.IMovieDAO;
-import my.catalog.entities.FilmEntity;
+import my.catalog.entities.FileEntity;
 import my.catalog.entities.FolderEntity;
 import my.catalog.model.IAppModelFactory;
 import my.catalog.utils.Utility;
@@ -25,7 +26,7 @@ public class ScanFoldersController {
 	@Autowired
 	private IFolderDAO folderDAO;
 	@Autowired
-	private IMovieDAO movieDAO;
+	private IFileDAO fileDAO;
 
 	public ScanFoldersController() {
 	}
@@ -36,19 +37,24 @@ public class ScanFoldersController {
 
 	public void runScanning() {
 		List<FolderEntity> pathEntities = folderDAO.getAll();
+		List<File> files = new ArrayList<File>();
 		for (FolderEntity pathEntity : pathEntities) {
-			List<File> files = Utility.find(pathEntity.getFolder(), REGEX);
-			for (File file : files) {
-				try {
-					FilmEntity film = Utility.fileToFIlm(file);
-					Integer id = movieDAO.add(film);
-					if (id != null) {
-						model.getFilmsModel().add(movieDAO.get(id));
-						LOG.info("Added new film: " + film.getName()); //$NON-NLS-1$
-					}
-				} catch (HibernateException e) {
-					// TODO AA: add check before create record
-				}
+			files.addAll(Utility.find(pathEntity.getFolder(), REGEX));
+		}
+		for (File file : files) {
+			add(file);
+		}
+	}
+
+	private void add(File file) {
+		FileEntity muvieFile = fileDAO.findByPath(file.getAbsolutePath());
+		if (muvieFile == null) {
+			try {
+				muvieFile = new FileEntity(file);
+				fileDAO.add(muvieFile);
+				LOG.info("New file was added. File name: " + file.getName());
+			} catch (HibernateException e) {
+				LOG.error(e.getMessage());
 			}
 		}
 	}

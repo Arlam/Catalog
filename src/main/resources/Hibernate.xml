@@ -25,6 +25,8 @@
 
 		<property name="annotatedClasses">
 			<list>
+			
+				<value>my.catalog.entities.FileEntity</value>
 				<value>my.catalog.entities.FilmEntity</value>
 				<value>my.catalog.entities.FolderEntity</value>
 				<value>my.catalog.entities.GenreEntity</value>

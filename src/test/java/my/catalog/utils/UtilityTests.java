@@ -35,7 +35,7 @@ public class UtilityTests {
 		EasyMock.expect(file.getAbsolutePath()).andStubReturn(expectedPath);
 		EasyMock.expect(file.getName()).andStubReturn(expectedName);
 		EasyMock.replay(file);
-		assertEquals(expectedPath, Utility.fileToFIlm(file).getPath());
+
 		assertEquals(expectedName, Utility.fileToFIlm(file).getName());
 	}
 

@@ -52,7 +52,7 @@ public class FilmsTableModel extends AbstractTableModel {
 		case 5:
 			return film.isWatched();
 		case 6:
-			return film.getPath();
+			return "deprecated";
 		}
 		return null;
 	}

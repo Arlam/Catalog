@@ -13,11 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "films", uniqueConstraints = { @UniqueConstraint(columnNames = { "path" }) })
+@Table(name = "films")
 public class FilmEntity implements IEntity, Serializable {
 
 	@Id
@@ -31,11 +31,11 @@ public class FilmEntity implements IEntity, Serializable {
 	@Column(name = "version", length = 32)
 	private String version;
 
-	@Column(name = "fileSize")
-	private Integer fileSize;
-
 	@Column(name = "year")
 	private Integer year;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+	private Set<FileEntity> files;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "films_languages", joinColumns = { @JoinColumn(name = "id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "language_id", nullable = false, updatable = false) })
@@ -54,15 +54,8 @@ public class FilmEntity implements IEntity, Serializable {
 	@Column(name = "watched")
 	private Boolean watched;
 
-	@Column(name = "existed")
-	private Boolean existed;
-
-	@Column(name = "path", length = 255, unique = true)
-	private String path;
-
 	public FilmEntity() {
 		watched = false;
-		existed = false;
 	}
 
 	// Getters and setters
@@ -99,6 +92,14 @@ public class FilmEntity implements IEntity, Serializable {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+
+	public Set<FileEntity> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Set<FileEntity> files) {
+		this.files = files;
 	}
 
 	public Set<LanguageEntity> getLanguages() {
@@ -145,19 +146,4 @@ public class FilmEntity implements IEntity, Serializable {
 		this.watched = watched;
 	}
 
-	public Boolean getExisted() {
-		return existed;
-	}
-
-	public void setExisted(Boolean existed) {
-		this.existed = existed;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
 }
